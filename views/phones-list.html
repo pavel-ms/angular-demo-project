@@ -4,19 +4,25 @@
             <h2>{{appName}}</h2>
 
             <div class="well row">
+
+                <!-- search field -->
                 <div class="col-md-7">
                     Search: <input ng-model="query"><br/>
                     <span ng-if="query">Your search query is <b>{{query}}</b></span>
-                </div>
+                </div><!-- end search field -->
+
+                <!-- sorting -->
                 <div class="col-md-5">
                     <select ng-model="orderProp">
                         <option value="name">Alphabetical</option>
                         <option value="age">Newest</option>
                         <option value="-age">Oldest</option>
                     </select>
-                </div>
+                </div><!-- end sorting -->
+
             </div>
 
+            <!-- list of devices -->
             <ul>
                 <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" class="phone-listing">
                     <a href="#/phones/{{phone.id}}">{{phone.name}}</a>

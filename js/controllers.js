@@ -5,7 +5,7 @@
 var phonecatControllers = angular.module('phonecatControllers', []);
 
 /**
- * Declare controller for phonecatApp
+ * Controller for Phones list page
  */
 phonecatControllers.controller('PhoneListCtrl', ['$scope', '$http', 'Phone', function ($scope, $http, Phone) {
 
@@ -22,8 +22,10 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', '$http', 'Phone', fun
     $scope.orderProp = 'age';
 }]);
 
+/**
+ * Controller for Detailed Phone page
+ */
 phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone', function($scope, $routeParams, Phone) {
-    $scope.bigImageUrl = '';
 
     $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function() {
         $scope.bigImageUrl = $scope.phone.images[0];
