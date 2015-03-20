@@ -1,5 +1,5 @@
 # studio project files
 .idea
 
-./node_modules
-./bower_components
+node_modules
+bower_components
