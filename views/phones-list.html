@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row" ng-controller="PhoneListCtrl">
+        <div class="col-md-4">
+            <h2>{{appName}}</h2>
+
+            <div class="well row">
+                <div class="col-md-7">
+                    Search: <input ng-model="query"><br/>
+                    <span ng-if="query">Your search query is <b>{{query}}</b></span>
+                </div>
+                <div class="col-md-5">
+                    <select ng-model="orderProp">
+                        <option value="name">Alphabetical</option>
+                        <option value="age">Newest</option>
+                        <option value="-age">Oldest</option>
+                    </select>
+                </div>
+            </div>
+
+            <ul>
+                <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+                    <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
+                    <div>
+                        <a href="#/phones/{{phone.id}}">
+                            <img ng-src="{{phone.imageUrl}}"/>
+                        </a>
+                    </div>
+                    <div>
+                        {{phone.descr}}
+                    </div>
+                </li>
+            </ul><!-- end list of devices -->
+
+            <div>
+                <b>Total Amount of Phones</b>: {{phones.length}}
+            </div>
+        </div>
+    </div>
+</div>
