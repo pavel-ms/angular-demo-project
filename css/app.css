@@ -1,3 +1,22 @@
 body {
     padding: 20px;
 }
+
+.phone-img-list li {
+    margin: 10px;
+    display: inline;
+}
+
+
+.phone-img-lg {
+    max-width: 400px;
+    display: block;
+}
+.phone-img-sm {
+    max-width: 150px;
+    cursor: pointer;
+}
+
+.additional-features {
+    font-weight: bold;
+}

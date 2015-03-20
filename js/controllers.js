@@ -7,14 +7,7 @@ var phonecatControllers = angular.module('phonecatControllers', []);
 /**
  * Declare controller for phonecatApp
  */
-phonecatControllers.controller('PhoneListCtrl', ['$scope', '$http', function ($scope, $http) {
-
-    /**
-     * We should declare dependencies by this way because of renaming function variables by
-     * compressing javascript
-     * @type {string[]}
-     */
-    phonecatApp.$inject = ['$scope', '$http'];  // array of dependencies declared as a strings
+phonecatControllers.controller('PhoneListCtrl', ['$scope', '$http', 'Phone', function ($scope, $http, Phone) {
 
     /**
      * Declare App Name
@@ -22,29 +15,41 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', '$http', function ($s
      */
     $scope.appName = 'Phone Cat App';
 
-    /**
-     * Bind the array of phones to $scope
-     * @type {Array}
-     */
-//    $scope.phones = [
-//        {'name': 'Nexus S', 'descr': 'Fast just got faster with Nexus S.', age: 3}
-//        , {'name': 'Motorola XOOM™ with Wi-Fi', 'descr': 'The Next, Next Generation tablet.', age: 1}
-//        , {'name': 'Apple iPhone', 'descr': 'And this just Apple', age: 5}
-//    ];
-
-    /**
-     * Get the list of phones from the server
-     */
-    $http
-        .get('/data/phones/phones.json')  // get returns promise object
-        .success(function(data) {
-            $scope.phones = data;
-        });
+     // Get the list of phones from the server
+     $scope.phones = $scope.phones = Phone.all();
 
     //
     $scope.orderProp = 'age';
 }]);
 
-phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
-        $scope.phoneId = $routeParams.phoneId;
+phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone', function($scope, $routeParams, Phone) {
+    $scope.bigImageUrl = '';
+
+    $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function() {
+        $scope.bigImageUrl = $scope.phone.images[0];
+    });
+
+    $scope.setBigImage = function(imgUrl) {
+        $scope.bigImageUrl = imgUrl;
+    };
 }]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

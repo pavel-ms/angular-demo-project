@@ -1,1 +1,25 @@
-TBD: detail view for <span>{{phoneId}}</span>
+<div class="row">
+
+    <div class="col-md-4">
+        <a href="#/phones">Вернутся к списку</a>
+        <h2>{{phone.name}}</h2>
+        <div class="well well-sm">
+            {{phone.description}}
+        </div>
+        <img class="phone-img-lg" ng-src="{{bigImageUrl}}">
+        <ul class="phone-img-list">
+            <li ng-repeat="img in phone.images">
+                <img class="phone-img-sm" ng-src="{{img}}" ng-click="setBigImage(img)">
+            </li>
+        </ul>
+        <div>
+            <b>Android:</b> {{phone.android.os}}<br/>
+            <b>Infrared:</b> {{phone.connectivity.infrared | checkmark}}<br/>
+            <b>GPS:</b> {{phone.connectivity.gps | checkmark}}
+        </div>
+        <div class="additional-features">
+            {{phone.additionalFeatures}}
+        </div>
+    </div>
+
+</div>
